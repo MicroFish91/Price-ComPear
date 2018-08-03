@@ -4,6 +4,9 @@ $(function(){
     var appID = "4237b061";
     var url = `https://api.edamam.com/search?q=${$searchValue}&app_id=${appID}&app_key=${apiKey}`;
 
+    $('#searchField').click(function(parseURL){
+        console.log(appID);
+    })
     console.log(url);
 
     $.get(url)
@@ -37,7 +40,7 @@ function updateUIError(){
 function parseURL(appID, apiKey){
     
     var newURL;
-    var $searchValue = "chicken";
+    var $searchValue = $('#searchField').val();
     var healthLabelArray = ["balanced", "high-protein"];
     var dietLabelArray = ["dairy-free", "gluten-free", "paleo"];
     var filterParameters = "";
