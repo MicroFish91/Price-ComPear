@@ -5,9 +5,9 @@ $(function(){
     var url = `https://api.edamam.com/search?q=${$searchValue}&app_id=${appID}&app_key=${apiKey}`;
 
     $('#searchField').click(function(parseURL){
-        console.log(appID);
+        
     })
-    console.log(url);
+    console.log(newURl);
 
     $.get(url)
     // Successful object retrieval from Recipe API
@@ -20,7 +20,7 @@ $(function(){
         console.log(error);
         updateUIError();	
     });
-});
+
 
 
 // Upon successful return from Recipe API
@@ -68,3 +68,5 @@ function getHealth(){
 function getDiet(){
 
 }
+
+});
