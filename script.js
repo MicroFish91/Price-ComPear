@@ -12,7 +12,8 @@ $(function(){
         $.get(url)
         // Successful object retrieval from Recipe API
             .done(function(recipeObj) {
-                localStorage.setItem("recipeObj", recipeObj);
+                localStorage.clear();
+                localStorage.setItem("recipeObj", JSON.stringify(recipeObj));
             })
             // Failed to retrieve from Recipe API
             .fail(function(error) {

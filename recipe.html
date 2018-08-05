@@ -75,23 +75,27 @@
     <div class="row">
       <!-- Image -->
       <div class="col-5 bg-dark text-light">
-        <img src="http://via.placeholder.com/300/09f/fff.png" alt="">
+        <img id="recipeImage" src="http://via.placeholder.com/300/09f/fff.png" alt="">
       </div>
 
-      <div class="col-7 bg-dark text-light">
+      <div class="col-7 bg-dark text-light" id="recipeTitle">
         Recipe Title and Recipe Save Section
         <br>
         <br>
-        <button>Save Recipe</button>
+
+        <div>
+          <button >Save Recipe</button>
+        </div>
+
       </div>
     </div>
 
     <!-- Body: Ingredients & Nutritional Info -->
     <div class="row mainContent">
 
-      <div class="col-6 bg-success text-dark" id="ingredientsList">
+      <div class="col-6 bg-success text-dark">
         <h4>Ingredients</h4>
-        <ul>
+        <ul id="ingredientsList">
           <li class="ingredient">Item 1</li>
           <li class="ingredient">Item 2</li>
           <li class="ingredient">Item 3</li>
@@ -108,8 +112,14 @@
 
         <!-- Header: Calories, Daily Value, Servings -->
         <div class="row">
+          <div class="col-6"><u>Calories/Serving</u></div>
+          <div class="col-3"><u>% DV</u></div>
+          <div class="col-3"><u>Servings</u></div>
+        </div>
+
+        <div class="row">
           <div class="col-6" id="calories">Calories/Serving</div>
-          <div class="col-3" id="dailyValue">% Daily Value</div>
+          <div class="col-3" id="dailyValue">% DV</div>
           <div class="col-3" id="servings">Servings</div>
         </div>
 
@@ -117,16 +127,16 @@
 
         <!-- Nutrition Title Headers -->
         <div class="row" id="nutritionTitle">
-          <div class="col-6"><u>Header Name</u></div>
-          <div class="col-3"><u>Header Amount</u></div>
-          <div class="col-3"><u>Header %</u></div>
+          <div class="col-6"><u>Name</u></div>
+          <div class="col-3"><u>Amount</u></div>
+          <div class="col-3"><u>Percent</u></div>
         </div>
 
         <!-- Nutrition: Name, Amount, % -->
         <div class="row nutritionItem">
-            <div class="col-6 nutrientName">Name</div>
-            <div class="col-3 nutrientAmount">Amount</div>
-            <div class="col-3 nutrientPercent">%</div>
+            <div class="col-6 nutrientName"></div>
+            <div class="col-3 nutrientAmount"></div>
+            <div class="col-3 nutrientPercent"></div>
           </div>
 
         <!-- will use javascript to keep appending this block as required:
@@ -139,6 +149,10 @@
 
       </div>
     </div>
+
+    <!-- Temporary Hyperlink for Test -->
+    <a href="index.html">front page</a>
+    <a href="pageTwo.html">pagetwo.html</a>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
