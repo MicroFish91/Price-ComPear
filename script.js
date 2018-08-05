@@ -12,7 +12,7 @@ $(function(){
         $.get(url)
         // Successful object retrieval from Recipe API
             .done(function(recipeObj) {
-                updateSuccess(recipeObj);	
+                localStorage.setItem("recipeObj", recipeObj);
             })
             // Failed to retrieve from Recipe API
             .fail(function(error) {
@@ -23,13 +23,6 @@ $(function(){
         });
     });
 
-
-// Upon successful return from Recipe API
-function updateSuccess(recipeObj){
-    console.log(recipeObj);
-
-
-}
 
 // Failed to retrieve from Recipe API
 function updateUIError(){
