@@ -39,15 +39,18 @@ $("#servings").text(currentObj.recipe.yield);
 // Nutrient Blocks
 for(let key in $nutrientObjects){
 
-    if (currentObj.recipe.totalDaily[key] == undefined){
-        nutrientPercent = 0;
-    } else {
-        nutrientPercent = currentObj.recipe.totalDaily[key].quantity;
+    if ($nutrientObjects[key].label != "Energy"){
+        
+        if (currentObj.recipe.totalDaily[key] == undefined){
+            nutrientPercent = 0;
+        } else {
+            nutrientPercent = currentObj.recipe.totalDaily[key].quantity;
+        }
+
+        $nutrientBlock = nutrientBlockConstructor($nutrientObjects[key].label, Math.round($nutrientObjects[key].quantity / currentObj.recipe.yield), $nutrientObjects[key].unit, Math.round(nutrientPercent / currentObj.recipe.yield));
+
+        $("#nutritionLabel").append($nutrientBlock);
     }
-
-    $nutrientBlock = nutrientBlockConstructor($nutrientObjects[key].label, Math.round($nutrientObjects[key].quantity), $nutrientObjects[key].unit, Math.round(nutrientPercent));
-
-    $("#nutritionLabel").append($nutrientBlock);
 
 }
 
@@ -59,6 +62,12 @@ console.log(currentObj);
 // Creates a Nutrient Block to Append to the Bottom Half of the Nutritional Breakdown Section; Pass function the nutrient name, amount and percent; returns back a DOM Element (Object)
 function nutrientBlockConstructor(name, amount, unit, percent){
     
+    if (percent == 0) {
+        percent = "-";
+    } else {
+        percent += " %";
+    }
+
     // Initialize Element Objects to Match HTML Format
     var $nutrientBlock = $("<div>", {class: "row nutritionItem"});
     var $nutrientName = $("<div>", {class: "col-6 nutrientName"});
@@ -68,7 +77,7 @@ function nutrientBlockConstructor(name, amount, unit, percent){
     // Add Passed Text Content
     $nutrientName.text(name);
     $nutrientAmount.text(amount + " " + unit);
-    $nutrientPercent.text(percent + " %");
+    $nutrientPercent.text(percent);
 
     // Append Objects into the Highest-Level Block
     $nutrientBlock.append($nutrientName);
