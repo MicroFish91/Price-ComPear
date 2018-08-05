@@ -5,14 +5,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="recipe.css">
   </head>
   <body>
 
-      <header>
+    <header>
       
         <nav>
           <h1>Foogle</h1>
@@ -70,17 +70,95 @@
       <!-- search-filters -->
       </div>
 
-      <!-- Temporary Hyperlink for Test -->
-      <a href="recipe.html">recipe.html</a>
-      <a href="pageTwo.html">pagetwo.html</a>
+    <!-- NEW RECIPE.HTML CODE STARTS HERE!!! -->
+    <!-- Header: Holds Recipe Image and Title -->
+    <div class="row">
+      <!-- Image -->
+      <div class="col-5 bg-dark text-light">
+        <img id="recipeImage" src="http://via.placeholder.com/300/09f/fff.png" alt="">
+      </div>
 
+      <div class="col-7 bg-dark text-light" id="recipeTitle">
+        Recipe Title and Recipe Save Section
+        <br>
+        <br>
+
+        <div>
+          <button >Save Recipe</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Body: Ingredients & Nutritional Info -->
+    <div class="row mainContent">
+
+      <div class="col-6 bg-success text-dark">
+        <h4>Ingredients</h4>
+        <ul id="ingredientsList">
+          <li class="ingredient">Item 1</li>
+          <li class="ingredient">Item 2</li>
+          <li class="ingredient">Item 3</li>
+          <li class="ingredient">Item 4</li>
+          <li class="ingredient">Item 5</li>
+          <!-- Will append list items using Javascript -->
+        </ul>
+      </div>
+
+      <div class="col-6 bg-danger text-dark" id="nutritionLabel" style="border: solid black">
+        
+        <!-- Title: Nutrition Facts -->
+        <h4>Nutritional Breakdown</h4>
+
+        <!-- Header: Calories, Daily Value, Servings -->
+        <div class="row">
+          <div class="col-6"><u>Calories/Serving</u></div>
+          <div class="col-3"><u>% DV</u></div>
+          <div class="col-3"><u>Servings</u></div>
+        </div>
+
+        <div class="row">
+          <div class="col-6" id="calories">Calories/Serving</div>
+          <div class="col-3" id="dailyValue">% DV</div>
+          <div class="col-3" id="servings">Servings</div>
+        </div>
+
+        <hr>
+
+        <!-- Nutrition Title Headers -->
+        <div class="row" id="nutritionTitle">
+          <div class="col-6"><u>Name</u></div>
+          <div class="col-3"><u>Amount</u></div>
+          <div class="col-3"><u>Percent</u></div>
+        </div>
+
+        <!-- Nutrition: Name, Amount, % -->
+        <div class="row nutritionItem">
+            <div class="col-6 nutrientName"></div>
+            <div class="col-3 nutrientAmount"></div>
+            <div class="col-3 nutrientPercent"></div>
+          </div>
+
+        <!-- will use javascript to keep appending this block as required:
+        <div class="row nutritionItem">
+          <div class="col-6 nutrientName">Name</div>
+          <div class="col-3 nutrientAmount">Amount</div>
+          <div class="col-3 nutrientPercent">%</div>
+        </div> -->
+
+
+      </div>
+    </div>
+
+    <!-- Temporary Hyperlink for Test -->
+    <a href="index.html">front page</a>
+    <a href="pageTwo.html">pagetwo.html</a>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="recipe.js"></script>
   </body>
-    <script src='script.js'></script>
 </html>
