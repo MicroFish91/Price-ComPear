@@ -11,9 +11,10 @@ $(function(){
 
         $.get(url)
         // Successful object retrieval from Recipe API
-            .done(function(recipeObj) {
-                localStorage.clear();
-                localStorage.setItem("recipeObj", JSON.stringify(recipeObj));
+            .done(function(objectList) {
+                localStorage.removeItem("objectList");
+                localStorage.setItem("objectList", JSON.stringify(objectList));
+                document.location.href = "pagetwo.html";
             })
             // Failed to retrieve from Recipe API
             .fail(function(error) {
@@ -53,7 +54,7 @@ function parseURL(appID, apiKey){
     }
     
     // Create Recipe API URL
-    newURL = `https://api.edamam.com/search?q=${$searchValue}&app_id=${appID}&app_key=${apiKey}&from=0&to=50${filterParameters}`;
+    newURL = `https://api.edamam.com/search?q=${$searchValue}&app_id=${appID}&app_key=${apiKey}&from=0&to=48${filterParameters}`;
 
     return newURL;
 }
