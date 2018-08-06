@@ -3,7 +3,7 @@ $(function() {
     var returnArray = [];
 
     // Nutrition API url
-    var listUrl = 'https://api.nal.usda.gov/ndb/search/?format=json&sort=r&max=100&offset=0&ds=Standard Reference&api_key='
+    var listUrl = 'https://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key='
     var apiKey = '6sv4apcjnrUpaeOI58SpDVB0mKbqUYpMnyLzOUK1';
 
     $('#searchButton').on('click', (e) => {
@@ -18,7 +18,8 @@ $(function() {
         // $name = $name.replace(/,/g, ' ');
         // console.log($name);
 
-        $.get(listUrl + apiKey + '&q=' + $name)
+        // $.get(listUrl + apiKey + '&q=' + $name)
+        $.get(listUrl + apiKey)
         
         .done(function(response){
             console.log(response);
