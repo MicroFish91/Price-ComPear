@@ -1,6 +1,7 @@
 $(function(){
 
     let array = [];
+    localStorage.clear();
     localStorage.setItem("tableOfContents", JSON.stringify(array));
 
     var apiKey = "549ed3588e947714bc867296eb0407f3";
