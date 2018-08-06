@@ -6,11 +6,26 @@ var nutrientPercent;
 var $nutrientBlock;
 var $listConstructor;
 var $nutrientConstructor;
+var savedPages;
 
 // Title
+$("#recipeTitle").text(currentObj.recipe.label);
+console.log(currentObj.recipe.label);
 
 // Image
 $("#recipeImage").attr("src", currentObj.recipe.image);
+
+// Save Recipe Button Click Event Handler
+$("#saveRecipe").click(function(){
+
+    addFavorite();
+
+});
+
+// Bookmarked Button Click Event Handler
+$("#bookmarked").click(function(){
+    document.location.href = "bookmarked.html";
+});
 
 
 // Append Ingredients to List
@@ -81,5 +96,25 @@ function nutrientBlockConstructor(name, amount, unit, percent){
     $nutrientBlock.append($nutrientPercent);
 
     return $nutrientBlock;
+
+}
+
+
+function addFavorite(){
+    
+    var body = document.body.innerHTML;
+    var $title = $("#recipeTitle").text();
+    var tableOfContents = JSON.parse(localStorage.getItem("tableOfContents"));
+
+    // If item has not been previously entered
+    if (localStorage.getItem($title) === null){
+        tableOfContents.push($title);
+    }
+
+    // Add back table of contents into local storage
+    localStorage.setItem("tableOfContents", JSON.stringify(tableOfContents));
+
+    // Add current DOM into local storage
+    localStorage.setItem($title, body);
 
 }

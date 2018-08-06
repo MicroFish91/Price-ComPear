@@ -62,3 +62,8 @@ h1{
 .mainContent {
     height: 40vh;
 }
+
+.bookIcon {
+    width: 3.5%;
+    margin-left: auto;
+}

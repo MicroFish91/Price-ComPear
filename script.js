@@ -1,5 +1,8 @@
 $(function(){
 
+    let array = [];
+    localStorage.setItem("tableOfContents", JSON.stringify(array));
+
     var apiKey = "549ed3588e947714bc867296eb0407f3";
     var appID = "4237b061";
     var url;
