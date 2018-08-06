@@ -3,12 +3,24 @@ $(function(){
     var $ingredientObjects = currentObj.recipe.ingredients;
     console.log($ingredientObjects);
     var produce = []
-    var badWords = ['1/2', 'cup']
-    var ingredientSplit = $ingredientObjects[0].text.split([' ']);
-    ingredientSplit = ingredientSplit.filter(val => !badWords.includes(val));
-    var ingredientSearch = ingredientSplit.toString();
-    var $ingredientSearch = ingredientSearch.replace(',', ' ');
-    console.log($ingredientSearch);
+    var $ingredientSearch;
+
+    //forEach function to seperate out the badWords
+    $ingredientObjects.forEach(function(value){
+        var badWords = ['1/2', 'cup']
+        produce = []
+        var ingredientSplit = value.text.split([' ']);
+        ingredientSplit = ingredientSplit.filter(val => !badWords.includes(val));
+        $ingredientSearch = ingredientSplit.join(" ");
+        console.log($ingredientSearch);
+        // $ingredients.push($ingredientSearch);
+
+    // var badWords = ['1/2', 'cup']
+    // var ingredientSplit = $ingredientObjects[1].text.split([' ']);
+    // ingredientSplit = ingredientSplit.filter(val => !badWords.includes(val));
+    // var ingredientSearched = ingredientSplit.toString();
+    // var $ingredientSearch = ingredientSearched.replace(',', ' ');
+    // console.log($ingredientSearch);
         $.get(`https://www.freshdirect.com/srch.jsp?searchParams=${$ingredientSearch}`)
         .done(function(response){
     //    let objResponse = JSON.parse(response);
@@ -21,8 +33,8 @@ $(function(){
            
     
         $(results).each(function(index, value){
-            console.log(value.innerText);
-            console.log(price[index].innerText);
+            // console.log(value.innerText);
+            // console.log(price[index].innerText);
     
             var prod = {};
             prod.item = value.innerText;
@@ -30,10 +42,26 @@ $(function(){
     
             produce.push(prod);
             
-            
+            // $('#prices').text(prod.price);
         })
-       
-        // console.log(produce);
+
+        // Add a loop that goes through your produce array and sends a function the object pulled
+        // Create a function that appends a block to the HTML with the price of the object, the function will take in the object passed by the array
+        console.log(produce);
+
+        function choosePrice(array){
+            console.log(array[0].item);
+            return array[0].price;
+        };
+        console.log(choosePrice(produce));
+
+        function priceSend(price){
+            $listConstructor = $("<li>");
+            $listConstructor.text(price);
+            $("#prices").append($listConstructor);
+        }
+
+        console.log(priceSend((choosePrice(produce))));
     
         })
         .fail(function(error){
@@ -72,5 +100,5 @@ $(function(){
 //     .fail(function(error){
 
 //     })
-
+});
 });
