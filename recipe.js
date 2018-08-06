@@ -6,6 +6,15 @@ var nutrientPercent;
 var $nutrientBlock;
 var $listConstructor;
 var $nutrientConstructor;
+var $xButton;
+var $searchNewIngredient;
+var $findButton;
+var returnArray = [];
+console.log(currentObj);
+
+// USDA Nutrition API url
+var listUrl = 'https://api.nal.usda.gov/ndb/search/?format=json&sort=r&max=100&offset=0&ds=Standard Reference&api_key='
+var apiKey = '6sv4apcjnrUpaeOI58SpDVB0mKbqUYpMnyLzOUK1';
 
 // Title
 
@@ -20,6 +29,127 @@ currentObj.recipe.ingredients.forEach(function(index){
     $("#ingredientsList").append($listConstructor);
 });
 
+// Edit Button Function
+$('#editIngredientsButton').on('click', (e) => {
+    $('#ingredientsList').empty();
+    console.log(currentObj.recipe.ingredients);
+    currentObj.recipe.ingredients.forEach(function(index){
+        $listConstructor = $("<li>");
+        $listConstructor.text(index.text);
+        $("#ingredientsList").append($listConstructor);
+    
+        $xButton = $('<button>', {
+            'text': 'x',
+            'id': 'xButton'
+        });
+
+        $($listConstructor).append($xButton)
+    });
+    
+    $addButton = $('<button>', {
+        'text': 'add item',
+        'id': 'addButton'
+    });
+
+    $("#ingredientsList").append($addButton)
+
+
+    // Add Button
+    $('#addButton').on('click', (e) => {
+        $addButton.remove();
+        $searchNewIngredient = $('<input>', {
+            'type': 'text',
+            'id': 'searchText'
+        })
+        $("#ingredientsList").append($searchNewIngredient);
+
+        $findButton = $('<button>', {
+            'text': 'find',
+            'id': 'findButton'
+        })
+        $("#ingredientsList").append($findButton);
+
+        // Find Button
+        $('#findButton').on('click', (e) => {
+        
+            e.preventDefault();
+    
+            returnArray = [];
+            $('#browsers').remove('');
+    
+            var $name$ = $('#searchText').val();
+            var $name = $name$.toLowerCase();
+            $searchNewIngredient.remove();
+            $findButton.remove();
+    
+            $.get(listUrl + apiKey + '&q=' + $name)
+            
+            .done(function(response){
+                // console.log(response);
+    
+                response.list.item.forEach(function(e){
+                    let productName = e.name.toLowerCase();
+                    let wordCheck1 = productName.search($name);
+    
+                    if(wordCheck1 >= 0){
+                        // console.log(e.group)
+                        if((e.group !== 'Baby Foods')){
+                            returnArray.push(e);
+                        }
+                    }   
+                })
+                let $itemBar= $('<select>', {
+                    'id': 'browsers'
+                    });
+                $("#ingredientsList").append($itemBar);
+                // console.log(returnArray);
+                returnArray.forEach(function (e){
+                    // listName = e.name;
+                    let $printArray= $('<option>', {
+                    'text': e.name,
+                    'id': 'itemReturn'
+                    });
+                $($itemBar).append($printArray);
+                })
+                $addButton2 = $('<button>', {
+                    'text': 'add',
+                    'id': 'addButton2'
+                })
+                $("#ingredientsList").append($addButton2);
+
+                $('#addButton2').on('click', (e) => {
+                    let $selected = $("#browsers").val();
+                    var $newIngr = $('<li>');
+                    $($newIngr).text($selected);
+                    $("#ingredientsList").append($newIngr);
+                    returnArray.forEach(function (e){
+                        if($selected === e.name){
+                            let foodID = e.ndbno;
+                            let idUrl = 'https://api.nal.usda.gov/ndb/reports/?type=b&format=json&api_key='
+                            $.get(idUrl + apiKey + '&ndbno=' + foodID)
+                            .done(function(response){
+                                console.log(response);
+                            })
+                            .fail(function(error) {
+                                console.log(error);
+                                    
+                            });
+                        }
+                    })
+                })
+            })
+    
+            .fail(function(error) {
+                console.log(error);
+                    
+            });
+
+        })
+    })
+})
+
+
+
 
 // Nutritional Breakdown
 // Calories Per Serving
@@ -31,7 +161,7 @@ $("#dailyValue").text(Math.round(calPerServ / 2000 * 100) + " %");
 // Servings
 $("#servings").text(currentObj.recipe.yield);
 
-
+console.log(currentObj);
 // Cycle through entire nutrient object passed by API and append each line into the nutritional breakdown table
 for(let key in $nutrientObjects){
 
