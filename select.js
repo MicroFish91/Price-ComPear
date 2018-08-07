@@ -23,6 +23,14 @@ $("#display-button").click(function(){
 
 });
 
+
+// Saved Recipes Bookmark click
+$("#bookmarked").click(function(){
+    document.location.href = "bookmarked.html";    
+});
+
+
+
 // Construct an Individual Card Element
 function cardConstructor(imageURL, imageCaption, bodyText, index){
 
@@ -44,7 +52,7 @@ function cardConstructor(imageURL, imageCaption, bodyText, index){
     $card.append($cardBody);
 
     // Add Click Event Listener
-    $card.click(function(event){
+    $img.click(function(event){
         cardClick(event);
     })
 
@@ -97,3 +105,5 @@ function displayTwelve(index){
     }
 
 }
+
+
