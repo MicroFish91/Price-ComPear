@@ -12,16 +12,17 @@ $(function(){
 
 });
 
-// On click, display 12 more cards
-$("#display-button").click(function(){
-    
+
+// When scrolling offscreen, show more cards
+$(window).on('scroll', function(){
+
     // Keeps adding 12 cards on each click, displays no more than 12 rows (48 cards) total
     if (index < 48){
         displayTwelve(index);
         index += 12;
-    }
-
+    }  
 });
+
 
 
 // Saved Recipes Bookmark click
