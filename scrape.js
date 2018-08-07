@@ -1,37 +1,75 @@
-$(function() {
+var produceList = [];
 
-    var produce = [];
-    setTimeout(function(){
-        $.get("https://www.freshdirect.com/browse.jsp?pageType=browse&id=veg&pageSize=30&all=false&activePage=1&sortBy=null&orderAsc=false&activeTab=product")
-        .done(function(response){
+$(function(){
 
-       // let objResponse = JSON.parse(response);
-       
+    // Initialize variables
+    var listArray = document.querySelector("#ingredientsList").children;
+    var ingredientItem;
+    
+    // Cycle through list elements
+    for (let index = 0; index < listArray.length; index++){
+    
+    // Clear produceList
+    produceList = [];
 
-        let results = $(response).find('.portrait-item-header-name');
-        let price = $(response).find('.portrait-item-price');
-       
+    // Ingredient Item Filter, ingredient item will eventually equal all list elements after filter is applied
+    ingredientItem = filterIngredient(listArray[index].textContent);
 
-        //console.log(results);
-           
+    // Get searched produce list from Fresh Direct
+    produceList = getSearchList(ingredientItem);
+    console.log(produceList);
 
-        $(results).each(function(index, value){
-            // console.log(value.innerText);
-            // console.log(price[index].innerText);
+    } // End for
+}); // End ready function
 
-            var prod = {};
-            prod.item = value.innerText;
-            prod.price = price[index].innerText;
 
-            produce.push(prod);
-        })
-       
-        console.log(produce);
+function filterIngredient(ingredientString){
+        
+        // Initialize Variables
+        var excludeWords = ['1/2', 'cup', 'fresh', 'freshly'];
+        var ingredientArray = ingredientString.split(" ");
 
-    })
-    .fail(function(error){
+        // Filter array to exclude words for excludeWords array
+        ingredientArray = ingredientArray.filter(word => !excludeWords.includes(word));
 
-    })
-     }, 3000);
+        // Convert back to string
+        ingredientString = ingredientArray.join(" ");
+        
+        return ingredientString;
+}
+
+// Pass search parameter, receive back list of scraped object (name, price) from Fresh Direct
+function getSearchList(searchParameter){
+
+    var produce = {};
+    var produceList = [];
+
+    // Call Fresh Direct to read through HTML DOM
+    $.get(`https://www.freshdirect.com/srch.jsp?pageType=search&searchParams=${searchParameter}`)
+            .done(function(freshDOM){
+
+                let $results = $(freshDOM).find('.portrait-item-header-name');
+                let $price = $(freshDOM).find('.portrait-item-price');
+
+                // Cycle through all searches and store results in a produce object
+                $($results).each(function(index, value){
+
+                    // Create produce items systematically
+                    produce = {};
+
+                    produce.name = value.innerText;
+                    produce.price = $price[index].innerText;
+                    
+                    // Store produce objects into a produce array
+                    produceList.push(produce);
+                    return produceList;
+
+                })
+
+                // console.log(produceList);
+                 
+            }) // End .done
    
-});
+            .fail(function(error){
+            }) // End .fail
+}
