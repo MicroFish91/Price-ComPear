@@ -11,15 +11,16 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    
     <div id="background">
       <header id="header">
-      
+        
         <nav>
           <h1>Foogle</h1>
           <div class="search-container">
             <form action="pagetwo.html">
               <input type="text" id="searchField" placeholder="Find Your Next Recipe" name="search">
-              <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+              <button id="search-button" type="submit"><i class="fa fa-search"></i></button><img id="bookmarked" class="bookIcon" src="https://image.flaticon.com/icons/png/512/4/4259.png" alt="">
             </form>
           </div>
         </nav>
@@ -41,22 +42,22 @@
           <div class="white-box">
             <div class="dropdown-content">
               <h1>Diet</h1>
-              <input type="checkbox" id="balanced" name="diet"> Balanced
-              <input type="checkbox" id="high-protein" name="diet"> High-Protein
+              <input type="checkbox" id="balanced" name="diet"> Balanced 
+              <input type="checkbox" id="high-protein" name="diet"> High-Protein<br>
               <input type="checkbox" id="low-carb" name="diet"> Low-Carb
               <input type="checkbox" id="low-fat" name="diet"> Low-Fat
-              <input type="checkbox" id="paleo" name="diet"> Paleo
+              <input type="checkbox" id="paleo" name="diet"> Paleo<br>
               <input type="checkbox" id="pescatarian" name="diet"> Pescatarian
               <input type="checkbox" id="vegan" name="diet"> Vegan
-              <input type="checkbox" id="vegetarian" name="diet"> Vegetarian
-              <h1>Ingredients</h1>
+              <input type="checkbox" id="vegetarian" name="diet"> Vegetarian<br> <br>
+              <h1>Allergies</h1>
               <input type="checkbox" id="gluten" name="diet"> Gluten
               <input type="checkbox" id="dairy" name="diet"> Dairy
               <input type="checkbox" id="eggs" name="diet"> Eggs
-              <input type="checkbox" id="soy" name="diet"> Soy
+              <input type="checkbox" id="soy" name="diet"> Soy<br>
               <input type="checkbox" id="wheat" name="diet"> Wheat
               <input type="checkbox" id="fish" name="diet"> Fish
-              <input type="checkbox" id="shellfish" name="diet"> Shell Fish
+              <input type="checkbox" id="shellfish" name="diet"> Shell Fish<br>
               <input type="checkbox" id="tree-nuts" name="diet"> Tree Nuts
               <input type="checkbox" id="peanuts" name="diet"> Peanuts
               <input type="checkbox" id="pork" name="diet"> Pork
@@ -69,6 +70,9 @@
        </div> 
       <!-- search-filters -->
       </div>
+      <!-- <footer id="footer">
+        <img id="bookmarked" class="bookIcon" src="https://image.flaticon.com/icons/png/512/4/4259.png" alt="">
+      </footer> -->
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -78,6 +82,7 @@
     <script src="script.js"></script>
   
   </div>
-  </body>
-    <script src='script.js'></script>
+  
+</body>
+    
 </html>
