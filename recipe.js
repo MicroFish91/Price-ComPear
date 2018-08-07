@@ -112,11 +112,6 @@ $('#removeButton').on('click', (e) => {
                     });
                 $($itemBar).append($printArray);
                 })
-            .fail(function(error) {
-                console.log(error);
-                console.log('shit stain')
-                alert('well shit');
-            });
 
 
                 function createMeasuresBar(){
@@ -189,9 +184,13 @@ $('#removeButton').on('click', (e) => {
                 })
                         .fail(function(error) {
                             console.log(error);
-                            console.log('shit')
-                            alert('well shit');
+
                         })
+    
+            .fail(function(error) {
+                console.log(error);
+                    
+            });
 
         })
     })
