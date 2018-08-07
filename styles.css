@@ -50,3 +50,7 @@ h1{
 .hover:hover .dropdown-content {display: block;}
 
 .hover:hover #filter {color: black;}
+
+#removeIngredientsButton{
+    margin-left: 5%;
+}

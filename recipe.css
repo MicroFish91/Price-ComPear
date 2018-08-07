@@ -11,10 +11,7 @@ h1{
     text-align: center;
     color: rgb(55, 172, 26);
 }
-h4{
-    margin-left: 5%;
-    margin-right: 10%;
-}
+
 .search-container{
     text-align: center;
     border-radius: 10%;
@@ -67,10 +64,7 @@ h4{
     height: 40vh;
 }
 
-/* edit buttons */
-#xButton{
-    height: 23px;
-}
+
 
 /* Ingredient list edit search bar */
 #ingredientBar{
@@ -79,4 +73,20 @@ h4{
 
 #measuresBar{
     width: 30%;
+}
+
+#removeIngredientsButton{
+    margin-left: 2%;
+}
+
+.listCheckbox{
+    margin-right:2%;
+}
+
+#addButton{
+    margin-left: 2%;
+}
+
+.strike{
+    text-decoration: line-through;
 }
