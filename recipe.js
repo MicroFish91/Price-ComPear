@@ -13,6 +13,16 @@ var returnArray = [];
 var ingredientArray = [];
 var $measuresBar;
 var $measuresItem;
+var indexTwo = 0;
+
+$('#searchText').hide();
+$('#findButton').hide();
+$('#cancelButton').hide();
+$('#updateButton').hide();
+$('#ingredientBar').hide();
+$('#measuresBar').hide();
+$('#addButton2').hide();
+
 
 
 // USDA Nutrition API url
@@ -35,162 +45,178 @@ currentObj.recipe.ingredients.forEach(function(index){
 
 ingredientArray.push(currentObj);
 console.log(ingredientArray);
+
 // Edit Button Function
 $('#removeButton').on('click', (e) => {
     $('#ingredientsList').empty();
+    $('#addButton').hide();
+    $('#removeButton').hide();
+    $('#updateButton').show();
     ingredientArray[0].recipe.ingredients.forEach(function(index){
-        $listConstructor = $("<li>");
+        $listConstructor = $("<li>", {"id": indexTwo});
         $listConstructor.text(index.text);
     
         $checkBox = $('<input>', {
             'type': 'checkbox',
-            'class': 'listCheckbox'
+            'class': 'listCheckbox',
+            'id': "c" + indexTwo
         });
 
         $($listConstructor).prepend($checkBox)
         $("#ingredientsList").append($listConstructor);
+
+        indexTwo++;
     });
     
-    $('.listCheckbox').on('click', (e) => {
-        $('li').toggleClass('strike')
-        console.log('yep');
+    $('.listCheckbox').on('click', (event) => {
+
+        let target = event.target.id;
+        target = target.slice(1, target.length);
+
+        $(`#${target}`).toggleClass('strike');
     })
 })
 
-
+$('#updateButton').on('click', (e) => {
+    $('#updateButton').hide();
+    $('#addButton').show();
+    $('#removeButton').show();
+})
 
     // Add Button
     $('#addButton').on('click', (e) => {
         $('#addButton').hide();
         $('#removeButton').hide();
-        $searchNewIngredient = $('<input>', {
-            'type': 'text',
-            'id': 'searchText'
-        })
-        $("#ingredientsList").append($searchNewIngredient);
+        $('#searchText').show();
+        $('#findButton').show();
+        $('#cancelButton').show();
 
-        $findButton = $('<button>', {
-            'text': 'find',
-            'id': 'findButton'
+        $('#cancelButton').on('click', (e) => {
+            $('#searchText').hide();
+            $('#findButton').hide();
+            $('#cancelButton').hide();
+            $('#addButton').show();
+            $('#removeButton').show();
         })
-        $("#ingredientsList").append($findButton);
-
         // Find Button
         $('#findButton').on('click', (e) => {
             
-            e.preventDefault();
-    
-            returnArray = [];
-            $('#ingredientBar').remove('');
-    
-            var $name$ = $('#searchText').val();
-            var $name = $name$.toLowerCase();
+                // e.preventDefault();
+                $('#ingredientsBar').find('option').remove();
+                returnArray = [];
+                //need to remove something
+                // $('#ingredientBar').remove('');
+        
+                var $name$ = $('#searchText').val();
+                var $name = $name$.toLowerCase();
 
-            $searchNewIngredient.remove();
-            $findButton.remove();
-    
-            $.get(listUrl + apiKey + '&q=' + $name)
-            
-            .done(function(response){
-                console.log(response);
-                console.log(response.list.item);
-    
-                response.list.item.forEach(function(e){
-                            returnArray.push(e);
+                $('#searchText').hide();
+                $('#findButton').hide();
+        
+                $.get(listUrl + apiKey + '&q=' + $name)
+                
+                .done(function(response){
+                    console.log(response);
+        
+                    // 
+                    response.list.item.forEach(function(e){
+                                returnArray.push(e);
+                                
+                        
+                    })
                     
-                })
-                let $itemBar= $('<select>', {
-                    'id': 'ingredientBar'
-                    });
-                $("#ingredientsList").append($itemBar);
-                // console.log(returnArray);
-                returnArray.forEach(function (e){
-                    // listName = e.name;
-                    let $printArray= $('<option>', {
-                    'text': e.name,
-                    'id': 'itemBar'
-                    });
-                $($itemBar).append($printArray);
-                })
-
-
-                function createMeasuresBar(){
-                    $measuresBar= $('<select>', {
-                        'id': 'measuresBar'
-                    });
-                    $("#ingredientsList").append($measuresBar);
-
-                    let $selected = $("#ingredientBar").val();
+                    $('#ingredientBar').text('');
+                    $('#ingredientBar').show();
+                    $('#measuresBar').show();
+                    $('#addButton2').show();
+                    // console.log(returnArray);
                     returnArray.forEach(function (e){
-                        if($selected === e.name){
-                            let foodID = e.ndbno;
-                            let idUrl = 'https://api.nal.usda.gov/ndb/reports/?ndbno='
-                            $.get(idUrl + foodID + '&' + 'type=b&format=json&api_key=' + apiKey)
-                            .done(function(response){
-                                let measuresArray = response.report.food.nutrients[0].measures;
-
-                                measuresArray.forEach(function (e){
-                                    $measuresItem = $('<option>', {
-                                    'text': e.label,
-                                    'id': 'itemMeasuresBar'
-                                    });
-                                $($measuresBar).append($measuresItem);
-                                })
-                            })
-                        }
-                    })
-                }
-                createMeasuresBar();
-                createAddButton2();
-
-                $('#ingredientBar').change(function(){
-                    $('#measuresBar').remove();
-                    $('#addButton2').remove();
-                    createMeasuresBar();
-                    createAddButton2();
-                })
-
-                function createAddButton2(){
-                    let $addButton2 = $('<button>', {
-                        'text': 'add',
-                        'id': 'addButton2'
-                    })
-                    $("#ingredientsList").append($addButton2);
-
-                    $('#addButton2').on('click', (e) => {
-                        console.log(ingredientArray);
-                        let $itemName = $("#ingredientBar").val();
-                        let $measuresName = $('#measuresBar').val();
-                        let addIngredientArray = {text:(`${$measuresName} ${$itemName}`), weight: '0'};
-                        var $newIngr = $('<li>');
-                        ingredientArray[0].recipe.ingredients.push(addIngredientArray);
-                    
-                        $('#ingredientsList').append($newIngr);
-                        $('#addButton2').remove('');
-                        $('#ingredientBar').remove('');
-                        $('#measuresBar').remove('');
-                        $('#ingredientsList').empty();
-                        ingredientArray[0].recipe.ingredients.forEach(function(index){
-                            $listConstructor = $("<li>");
-                            $listConstructor.text(index.text);
-                            $("#ingredientsList").append($listConstructor);
-
+                        let $printArray= $('<option>', {
+                        'text': e.name,
+                        'id': 'itemBar'
                         });
-                        $('#addButton').show();
-                        $('#removeButton').show();
+                    $('#ingredientBar').append($printArray);
                     })
-                }
-                            
-                })
-                        .fail(function(error) {
-                            console.log(error);
+                    console.log('1st' + returnArray.length);
 
+
+                    function createMeasuresBar(){
+                        var measuresArray = [];
+                        var $selected = $("#ingredientBar").val();
+                        // Do we need to clear this?
+                        $("#measuresBar").text('');
+                        console.log('2nd before' + returnArray.length);
+                        returnArray.forEach(function (e){
+                            if($selected === e.name){
+                                let foodID = e.ndbno;
+
+                                let idUrl = 'https://api.nal.usda.gov/ndb/reports/?ndbno='
+                                $.get(idUrl + foodID + '&' + 'type=b&format=json&api_key=' + apiKey)
+                                .done(function(response){
+                                    measuresArray = response.report.food.nutrients[0].measures;
+                                    
+                                    measuresArray.forEach(function (e){
+                                        $measuresItem = $('<option>', {
+                                        'text': e.label,
+                                        'id': 'itemMeasuresBar'
+                                        });
+                                    $('#measuresBar').append($measuresItem);
+                                    })
+                                })
+                            }
                         })
-    
-            .fail(function(error) {
-                console.log(error);
+                    }
+                    createMeasuresBar();
                     
-            });
+
+                    $('#ingredientBar').change(function(){
+                        createMeasuresBar();
+                        
+                    })
+
+                        $('#addButton2').on('click', (e) => {
+                            console.log(ingredientArray);
+                            let $itemName = $("#ingredientBar").val();
+                            let $measuresName = $('#measuresBar').val();
+                            let addIngredientArray = {text:(`${$measuresName} ${$itemName}`), weight: '0'};
+                            var $newIngr = $('<li>');
+                            ingredientArray[0].recipe.ingredients.push(addIngredientArray);
+                        
+                            $('#ingredientsList').append($newIngr);
+                            
+                            $('#ingredientsList').empty();
+                            ingredientArray[0].recipe.ingredients.forEach(function(index){
+                                $listConstructor = $("<li>");
+                                $listConstructor.text(index.text);
+                                $("#ingredientsList").append($listConstructor);
+
+                            });
+                            
+                            $('#addButton').show();
+                            $('#removeButton').show();
+                            $('#cancelButton').hide();
+                            $('#addButton2').hide();
+                            $('#cancelButton').hide();
+                            $('#ingredientBar').hide();
+                            $('#measuresBar').hide();
+                            $('#searchText').val('');
+                            $('#measuresBar').html('');
+                            $("#measuresBar").text('');
+                            $('#ingredientBar').html('');
+                            $('#ingredientBar').text('');
+                        })
+                    
+                                
+                    })
+                            .fail(function(error) {
+                                console.log(error);
+
+                            })
+        
+                .fail(function(error) {
+                    console.log(error);
+                        
+                });
 
         })
     })

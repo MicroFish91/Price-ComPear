@@ -90,3 +90,13 @@ h1{
 .strike{
     text-decoration: line-through;
 }
+#findButton{
+    background-color: green;
+}
+
+#cancelButton{
+    background-color: rgb(226, 176, 176);
+}
+#buttonBox{
+    width:40%;
+}
