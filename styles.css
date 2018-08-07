@@ -1,10 +1,17 @@
+/* image background for main page */
 #background{
-    background-image: url('https://wallpaperstock.net/wallpapers/thumbs1/53636wide.jpg');
-    width: 100%;
-    min-height: 800px;
+    background-image: url('images/ws_Recipe_Book_1920x1200.jpg');
+    max-width: 100%;
+    min-height: 900px;
     background-repeat: no-repeat;
 }
 
+/* recipe html background color */
+#background2{
+    background-color: #243d15;
+}
+
+/* failed responsive code */
 @media screen and (max-width: 360px) {
     #background {
          width: 360px;
@@ -12,10 +19,15 @@
     }
 }
 
+/* html page2 background color */
+#page2{
+    background-color: rgb(253, 215, 165);
+}
+
 #header{
     opacity: 0.8;
     width: 100%;
-    background-color: #445228;
+    background-color: #243d15;
     align-content: center;
 }
 
@@ -27,10 +39,12 @@
     background-color: white;
 }
 
+/* main title */
 h1{
     text-align: center;
     color: white;
     font-family: 'Pacifico', cursive;
+    padding: 0.3%;
 }
 
 .search-container{
@@ -38,54 +52,100 @@ h1{
     border-radius: 10%;
 }
 
+/* image cards */
 .cards{
     padding-top: 10%;
 }
 
 #search-filters{
     opacity: 0.8;
-    background-color: #445228;
+    background-color: #243d15;;
     padding: 1%;
     /* margin-top: .5%; */
 }
 
+/* text in the search-filter dropdown */
 #filter{
     text-align: center;
     color: white;
     font-family: 'Pacifico'; 
 }
 
+/* hover effect for search-filter */
 .hover{
     position: relative;
     display: inline-block;
 }
+
+/* dropdown-content in search-filter */
 .dropdown-content{
     display: none;
     position: absolute;
-    background-color: #445228;
+    background-color: #243d15;
     opacity: 0.99;
 }
 
+/* for search-filter button */
 .btn {
-    background-color: #445228;
+    background-color: #243d15;;
     opacity: 0.8;
     color: white;;
     font-size: 16px;
 }
 
-#footer{
-    background-color: #445228;
-    text-align: center;
-    height: 8vh;
-    opacity: 0.8;
-    margin-top: 47%;
+/* bookMark link */
+#bookmarked{
+    height: 30px;
+    width: 2%;
+    margin-left: 1%;
 }
 
-a{
-    color: white;
-    font-family: 'Pacifico';
+/* for recipe.html */
+.img-title{
+    background-color: white;
+    opacity: 0.95;
+    margin-top: 8%;
+    border: solid black;
 }
 
+/* for recipe.html */
+.mainContent{
+    background-color: white;
+    opacity: 0.95;
+    color: black;
+    border: solid black;
+}
+
+/* for recipe.html */
+#recipeImage{
+   margin: 3% 3% 3% 3%;
+}
+
+/* for recipe.html */
+#recipeTitle{
+    margin-top: 15%;
+    color: black;
+    border-left: solid black;
+    font-size: 80px;
+}
+
+/* for recipe.html */
+#ingredientsList{
+    border-right: solid black;
+    
+}
+
+/* for recipe.html */
+#priceList{
+    border-right: solid black;
+}
+
+/* from bookMarked.js */
+.listItem{
+    color: black;
+}
+
+/* hover effects */
 .dropdown-content a:hover {background-color: #ddd;}
 
 .hover:hover .dropdown-content {display: block;}

@@ -10,24 +10,67 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body id='page2'>
 
-      <header>
+      <header id="header">
       
-        <nav>
-          <h1>Foogle</h1>
-          <div class="search-container">
-            <form action="/action_page.php">
-              <input type="text" placeholder="Find Your Next Recipe" name="search">
-              <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
-              <button id="display-button" onclick="event.preventDefault()">Display More</button>
-            </form>
+          <nav>
+              <h1>Foogle</h1>
+              <div class="search-container">
+                <form action="pagetwo.html">
+                  <input type="text" id="searchField" placeholder="Find Your Next Recipe" name="search">
+                  <button id="search-button" type="submit"><i class="fa fa-search"></i></button><img id="bookmarked" class="bookIcon" src="https://image.flaticon.com/icons/png/512/4/4259.png" alt="">
+                </form>
+              </div>
+            </nav>
+      
+      
+
+      <div id="search-filters">
+        <div id="filter">
+        <div class="hover">
+          <div id="filter-label" rel="search-filters">
+            <div class="uppercase">
+              <span class="lbl">refine search by</span>
+              <strong class="titles">Diet, Ingredients</strong>
+              <button class="btn">
+                <i class="fa fa-caret-down"></i>
+              </button>
+            </div>
           </div>
-        </nav>
-      
-      </header>
-        
-      <div class="container" id="cardContainer">
+          <div class="white-box">
+            <div class="dropdown-content">
+              <h1>Diet</h1>
+              <input type="checkbox" id="balanced" name="diet"> Balanced
+              <input type="checkbox" id="high-protein" name="diet"> High-Protein
+              <input type="checkbox" id="low-carb" name="diet"> Low-Carb
+              <input type="checkbox" id="low-fat" name="diet"> Low-Fat
+              <input type="checkbox" id="paleo" name="diet"> Paleo
+              <input type="checkbox" id="pescatarian" name="diet"> Pescatarian
+              <input type="checkbox" id="vegan" name="diet"> Vegan
+              <input type="checkbox" id="vegetarian" name="diet"> Vegetarian
+              <h1>Ingredients</h1>
+              <input type="checkbox" id="gluten" name="diet"> Gluten
+              <input type="checkbox" id="dairy" name="diet"> Dairy
+              <input type="checkbox" id="eggs" name="diet"> Eggs
+              <input type="checkbox" id="soy" name="diet"> Soy
+              <input type="checkbox" id="wheat" name="diet"> Wheat
+              <input type="checkbox" id="fish" name="diet"> Fish
+              <input type="checkbox" id="shellfish" name="diet"> Shell Fish
+              <input type="checkbox" id="tree-nuts" name="diet"> Tree Nuts
+              <input type="checkbox" id="peanuts" name="diet"> Peanuts
+              <input type="checkbox" id="pork" name="diet"> Pork
+            </div>
+          <!-- white-box -->
+          </div>
+        <!-- hover -->
+        </div>
+       <!-- Filters -->
+       </div> 
+      <!-- search-filters -->
+      </div>
+    </header>
+      <div class="container" id="cardContainer" data-aos="fade-down-right">
           <!-- Example constructor layout -->
           <!-- <div class="row cardCollector">
               
@@ -44,8 +87,6 @@
         </div>
   
     <!-- Temporary Hyperlink for Test -->
-    <a href="recipe.html">recipe.html</a>
-    <a href="index.html">frontpage</a>
   
   
     <script
