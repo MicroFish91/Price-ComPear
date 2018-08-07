@@ -13,6 +13,7 @@ var returnArray = [];
 var ingredientArray = [];
 var $measuresBar;
 var $measuresItem;
+var indexTwo = 0;
 
 
 // USDA Nutrition API url
@@ -35,25 +36,32 @@ currentObj.recipe.ingredients.forEach(function(index){
 
 ingredientArray.push(currentObj);
 console.log(ingredientArray);
+
 // Edit Button Function
 $('#removeButton').on('click', (e) => {
     $('#ingredientsList').empty();
     ingredientArray[0].recipe.ingredients.forEach(function(index){
-        $listConstructor = $("<li>");
+        $listConstructor = $("<li>", {"id": indexTwo});
         $listConstructor.text(index.text);
     
         $checkBox = $('<input>', {
             'type': 'checkbox',
-            'class': 'listCheckbox'
+            'class': 'listCheckbox',
+            'id': "c" + indexTwo
         });
 
         $($listConstructor).prepend($checkBox)
         $("#ingredientsList").append($listConstructor);
+
+        indexTwo++;
     });
     
-    $('.listCheckbox').on('click', () => {
-        $($listConstructor).toggleClass('strike')
-        console.log('yep');
+    $('.listCheckbox').on('click', (event) => {
+
+        let target = event.target.id;
+        target = target.slice(1, target.length);
+
+        $(`#${target}`).toggleClass('strike');
     })
 })
 
