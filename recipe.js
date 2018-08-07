@@ -51,8 +51,8 @@ $('#removeButton').on('click', (e) => {
         $("#ingredientsList").append($listConstructor);
     });
     
-    $('.listCheckbox').on('click', () => {
-        $($listConstructor).toggleClass('strike')
+    $('.listCheckbox').on('click', (e) => {
+        $('li').toggleClass('strike')
         console.log('yep');
     })
 })
