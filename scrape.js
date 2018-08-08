@@ -17,7 +17,7 @@ $(function(){
     ingredientItem = filterIngredient(listArray[index].textContent);
 
     // Get searched produce list from Fresh Direct
-    postPrice(getSearchList(ingredientItem, produceList));
+    produceList = getSearchList(ingredientItem, produceList);
 
 
     } // End for
@@ -65,28 +65,27 @@ function getSearchList(searchParameter, produceList){
 
                 })
 
+                postPrice(produceList);
+
                  
             }) // End .done
    
             .fail(function(error){
             }) // End .fail
 
-        return produceList;
+        // return produceList;
 }
 
 // Takes an array and posts the price into return.html
 function postPrice(produceList){
 
-    
-    console.log(produceList);
-
-    var postElement = produceList;
+    var postElement = selectSearch(produceList);
     var $priceList = $("#priceList");
     var $li = $("<li>", {id: indexTwo});
-
-    // console.log(postElement);
     
     $li.text(postElement);
+
+    console.log(produceList[0].name);
 
     $priceList.append($li); 
 
@@ -95,8 +94,7 @@ function postPrice(produceList){
 }
 
 // Takes an array of searches and filters out the most pertinent search, returns the object; right now just returning first element, will revisit later
-function selectSearch(){
+function selectSearch(produceList){
     
-    console.log(produceList[0]);
-    return produceList[0];
+    return produceList[0].price;
 }
