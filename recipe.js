@@ -30,6 +30,7 @@ if (localStorage.getItem("currentBookmark") != null) {
     var $listConstructor;
     var $nutrientConstructor;
     var savedPages;
+    var indexTwo = 0;
 
     // Title
     $("#recipeTitle").text(currentObj.recipe.label);
@@ -59,11 +60,23 @@ if (localStorage.getItem("currentBookmark") != null) {
 
 
     // Append Ingredients to List - add to recipeEdit.js
-    // currentObj.recipe.ingredients.forEach(function(index){
-    //     $listConstructor = $("<li>");
-    //     $listConstructor.text(index.text);
-    //     $("#ingredientsList").append($listConstructor);
-    // });
+    currentObj.recipe.ingredients.forEach(function(index){
+
+        var $listConstructor = $("<li>",{"id": indexTwo});
+        $listConstructor.text(index.text);
+        $("#ingredientsList").append($listConstructor);
+        
+        //Creating checkboxes
+        let $checkBox = $('<input>', {
+            'type': 'checkbox',
+            'class': 'listCheckbox',
+            'id': "c" + indexTwo
+        });
+        $($checkBox).prop("checked", true);
+        $($listConstructor).prepend($checkBox)
+
+        indexTwo++;
+    });
 
 
     // Nutritional Breakdown

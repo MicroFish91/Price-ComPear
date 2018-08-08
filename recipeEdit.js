@@ -27,7 +27,7 @@ function appendIngredients(array){
         $("#ingredientsList").append($listConstructor);
 
         //Creating checkboxes
-        var $checkBox = $('<input>', {
+        let $checkBox = $('<input>', {
             'type': 'checkbox',
             'class': 'listCheckbox',
             'id': "c" + indexTwo
@@ -37,20 +37,25 @@ function appendIngredients(array){
 
         indexTwo++;
     });
+    createListener();
 }
-appendIngredients(ingredientObj);
+// appendIngredients(ingredientObj);
 
 
 
 // Line-through each checked item in ingredient list
-$('.listCheckbox').on('click', (event) => {
-    console.log('event');
-    console.log(event);
-    let target = event.target.id;
-    target = target.slice(1, target.length);
-    $(`#${target}`).toggleClass('strike');
-})
 
+function createListener(){
+    $('.listCheckbox').on('click', (event) => {
+        console.log('event');
+        console.log(event);
+        let target = event.target.id;
+        target = target.slice(1, target.length);
+        $(`#${target}`).toggleClass('strike');
+    })
+}
+
+createListener();
 
 // Find Button
 $('#findButton').on('click', (e) => {
@@ -170,7 +175,8 @@ function createMeasuresBar(array){
 }
 
 // Add button function
-$('#addButton').on('click', () => {
+$('#addButton').on('click', (e) => {
+    e.preventDefault();
     var $selected = $('#ingredientBar').find(":selected").text();
     var $selected2 = $('#measuresBar').find(":selected").text();
     newIngredientObject =  {text:(`${$selected2} ${$selected}`), weight: '0'};
