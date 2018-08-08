@@ -151,3 +151,21 @@ h1{
 .hover:hover .dropdown-content {display: block;}
 
 .hover:hover #filter {color: black;}
+
+/* checkbox line-through */
+.strike{
+    text-decoration: line-through;
+}
+
+#ingredientBar{
+    width: 90%;
+    margin-top: 5%;
+}
+#measuresBar{
+    width: 90%;
+    margin-top: 5%;
+}
+
+.listCheckbox{
+    margin-right: 2%;
+}
