@@ -38,6 +38,13 @@ if (localStorage.getItem("currentBookmark") != null) {
     // Image
     $("#recipeImage").attr("src", currentObj.recipe.image);
 
+    // Directions
+    $("#directions").click(function(){
+
+        document.location.href = currentObj.recipe.url;
+
+    });
+
     // Save Recipe Button Click Event Handler
     $("#saveRecipe").click(function(){
 
@@ -51,12 +58,12 @@ if (localStorage.getItem("currentBookmark") != null) {
     });
 
 
-    // Append Ingredients to List
-    currentObj.recipe.ingredients.forEach(function(index){
-        $listConstructor = $("<li>");
-        $listConstructor.text(index.text);
-        $("#ingredientsList").append($listConstructor);
-    });
+    // Append Ingredients to List - add to recipeEdit.js
+    // currentObj.recipe.ingredients.forEach(function(index){
+    //     $listConstructor = $("<li>");
+    //     $listConstructor.text(index.text);
+    //     $("#ingredientsList").append($listConstructor);
+    // });
 
 
     // Nutritional Breakdown
