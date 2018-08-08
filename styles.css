@@ -24,6 +24,13 @@
     }
 }
 
+#saveRecipe{
+    margin-top: 3%;
+}
+#directions{
+    margin-top: 3%;
+}
+
 /* html page2 background color */
 #page2{
     background-color: rgb(255, 255, 255);
