@@ -16,7 +16,7 @@ $(function(){
     ingredientItem = filterIngredient(listArray[index].textContent);
 
     // Get searched produce list from Fresh Direct
-    produceList = getSearchList(ingredientItem);
+    setTimeout(getSearchList(ingredientItem, produceList));
     console.log(produceList);
 
     } // End for
@@ -39,10 +39,9 @@ function filterIngredient(ingredientString){
 }
 
 // Pass search parameter, receive back list of scraped object (name, price) from Fresh Direct
-function getSearchList(searchParameter){
+function getSearchList(searchParameter, produceList){
 
     var produce = {};
-    var produceList = [];
 
     // Call Fresh Direct to read through HTML DOM
     $.get(`https://www.freshdirect.com/srch.jsp?pageType=search&searchParams=${searchParameter}`)
@@ -62,14 +61,14 @@ function getSearchList(searchParameter){
                     
                     // Store produce objects into a produce array
                     produceList.push(produce);
-                    return produceList;
 
                 })
 
-                // console.log(produceList);
                  
             }) // End .done
    
             .fail(function(error){
             }) // End .fail
+
+        return produceList;
 }
