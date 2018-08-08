@@ -39,6 +39,13 @@ if (localStorage.getItem("currentBookmark") != null) {
     // Image
     $("#recipeImage").attr("src", currentObj.recipe.image);
 
+    // Directions
+    $("#directions").click(function(){
+
+        document.location.href = currentObj.recipe.url;
+
+    });
+
     // Save Recipe Button Click Event Handler
     $("#saveRecipe").click(function(){
 
