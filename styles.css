@@ -55,6 +55,9 @@ h1{
 /* image cards */
 .cards{
     padding-top: 10%;
+    border-width: 10px;
+    border:black;
+
 }
 
 #search-filters{
