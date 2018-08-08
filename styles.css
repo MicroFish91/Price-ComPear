@@ -4,6 +4,7 @@
     max-width: 100%;
     min-height: 900px;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* recipe html background color */
@@ -12,10 +13,14 @@
 }
 
 /* failed responsive code */
-@media screen and (max-width: 360px) {
+@media only screen and (max-width: 600px) {
     #background {
-         width: 360px;
-         height: 200px;
+        background-image: url('images/ws_Recipe_Book_1920x1200.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
     }
 }
 
@@ -83,6 +88,7 @@ h1{
     position: absolute;
     background-color: #243d15;
     opacity: 0.99;
+    z-index: 10;
 }
 
 /* for search-filter button */
@@ -126,7 +132,7 @@ h1{
     margin-top: 15%;
     color: black;
     border-left: solid black;
-    font-size: 80px;
+    font-size: 60px;
 }
 
 /* for recipe.html */
