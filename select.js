@@ -36,7 +36,7 @@ $("#bookmarked").click(function(){
 function cardConstructor(imageURL, imageCaption, bodyText, index){
 
     // Initialize variables
-    var $card = $("<div>", {class: "cards col-3 offset-1"});
+    var $card = $("<div>", {class: "cards col-lg-3 col-md-4 col-sm-4 offset-lg-1"});
     var $img = $("<img>", {class: "card-img-top", src: imageURL, alt: imageCaption});
     var $cardBody = $("<div>", {class: "card-body"});
     var $paragraph = $("<p>", {class: "card-text"});
