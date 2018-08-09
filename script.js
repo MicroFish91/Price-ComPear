@@ -32,7 +32,7 @@ $(function(){
 
 // Failed to retrieve from Recipe API
 function updateUIError(){
-
+    alert("Data-matching error: the specified item was not found. Please refine search parameters and try again.");
 }
 
 
