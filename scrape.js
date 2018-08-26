@@ -21,12 +21,21 @@ $(function(){
 
 
     } // End for
+
+    if ($("#priceList").find("li").length == 0) {
+
+        let $li = $("<p>");
+        $li.text("Unable to retrieve prices from Fresh-Direct.  Please temporarily enable cross-origins resource sharing if you'd like prices to be scraped. ");
+        $("#priceList").append($li);
+    }
+
 }); // End ready function
 
-
+// Filter Search by Exclusion Parameters
 function filterIngredient(ingredientString){
         
         // Initialize Variables
+        // Exclude list to be updated / refined in the future
         var excludeWords = ['1/2', 'cup', 'fresh', 'freshly'];
         var ingredientArray = ingredientString.split(" ");
 
@@ -81,7 +90,7 @@ function postPrice(produceList){
 
     var postElement = selectSearch(produceList);
     var $priceList = $("#priceList");
-    var $li = $("<li>", {id: indexTwo});
+    var $li = $("<li>", {id: "b" + indexTwo});
     
     $li.text(postElement);
 

@@ -51,6 +51,10 @@
     background-color: white;
 }
 
+#refineSearch {
+    z-index: -1;
+}
+
 /* main title */
 h1{
     text-align: center;
@@ -90,6 +94,10 @@ h1{
     text-align: center;
     color: white;
     font-family: 'Pacifico'; 
+}
+
+#refineBox{
+    position: relative;
 }
 
 /* hover effect for search-filter */

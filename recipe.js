@@ -34,7 +34,6 @@ if (localStorage.getItem("currentBookmark") != null) {
 
     // Title
     $("#recipeTitle").text(currentObj.recipe.label);
-    console.log(currentObj.recipe.label);
 
     // Image
     $("#recipeImage").attr("src", currentObj.recipe.image);
@@ -72,11 +71,34 @@ if (localStorage.getItem("currentBookmark") != null) {
             'class': 'listCheckbox',
             'id': "c" + indexTwo
         });
-        $($checkBox).prop("checked", true);
-        $($listConstructor).prepend($checkBox)
+        $($checkBox).prop("checked", false);
+        $($listConstructor).prepend($checkBox);
 
         indexTwo++;
+
     });
+
+    createListener();
+
+    // Add event listeners onto any li items in class "listCheckbox".  Will add an event listener that toggles a Line-through each checked item in ingredient list
+    function createListener(){
+        $('.listCheckbox').on('click', (event) => {
+            
+            let target = event.target.id;
+            let checkboxes = document.querySelectorAll('.listCheckbox');
+
+            // Puts index position of li item into target.
+            target = target.slice(1, target.length);
+
+            // Strikes out checkbox item
+            $(`#${target}`).toggleClass('strike');
+            
+            checkboxes.forEach(function(index){
+                $(index).prop("checked", false);
+            })
+            
+        })
+    }
 
 
     // Nutritional Breakdown

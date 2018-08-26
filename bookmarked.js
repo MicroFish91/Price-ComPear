@@ -16,16 +16,27 @@ for(let index = 0; index < tableOfContents.length; index++){
 function appendBlock(index){
 
     // Initialize Variables
-    var $div = $("<div>", {class: "listBlock"});
+    var $div = $("<div>", {class: "listBlock col-3 offset-1"});
     var $a = $("<a>", {class: "listItem", id: index});
+    var $img = $("<img>", {class: "bookImage", id: `book${index}`})
+    var $br = $("<br>");
 
     // Add text to hyperlink
-    $a.text((index + 1) + ". " + tableOfContents[index]);
+    $a.html((index + 1) + ". " + tableOfContents[index]);
     $a.attr("href", "#");
+
+    // Add Image
+    $img.attr("src", findImage(localStorage.getItem(tableOfContents[index])));
 
     // Append
     $div.append($a);
+    $div.append($br);
+    $div.append($img);
+
     $("#bookmarkSection").append($div);
+    $("#bookmarkSection").append("<br>");
+
+    // objectList[index].recipe.image
 
     // Add Event Listener
     $(`#${index}`).click(function(event){
@@ -50,5 +61,13 @@ function bookmarkClick(event){
     localStorage.setItem("currentBookmark", text);
 
     document.location.href = "recipe.html";
+
+}
+
+function findImage (domString){
+    
+    var element = $("");
+    element.innerHTML = domString;
+    console.log($(element).find("img"));
 
 }
