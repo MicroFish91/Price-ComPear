@@ -72,7 +72,7 @@ if (localStorage.getItem("currentBookmark") != null) {
             'id': "c" + indexTwo
         });
         $($checkBox).prop("checked", false);
-        $($listConstructor).prepend($checkBox)
+        $($listConstructor).prepend($checkBox);
 
         indexTwo++;
 
@@ -85,12 +85,18 @@ if (localStorage.getItem("currentBookmark") != null) {
         $('.listCheckbox').on('click', (event) => {
             
             let target = event.target.id;
+            let checkboxes = document.querySelectorAll('.listCheckbox');
 
             // Puts index position of li item into target.
             target = target.slice(1, target.length);
 
             // Strikes out checkbox item
             $(`#${target}`).toggleClass('strike');
+            
+            checkboxes.forEach(function(index){
+                $(index).prop("checked", false);
+            })
+            
         })
     }
 
