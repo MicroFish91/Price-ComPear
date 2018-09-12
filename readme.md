@@ -35,14 +35,14 @@ We did not see the restrictions to the number of search ingredients that could b
 
 The search criterias used by our three resources use different general formatting.  The Edamame Recipe API, the USDA API, and FreshDirect all have different search and search result formats, thus we had to create functions that filtered the formats to a standard so that all three could 'understand' each other.  This proved difficult and though we got pretty close in most cases, there are still errors that may crop up from time to time that would need continued maintenance to eliminate.  We also forced the user to choose the USDA API search criteria using nested API calls, please see screenshot below for an example of this in action.
 
+![Nested Call](./images/Nested_API.png)
+
 Though we got most of the features functioning pretty well, to perfect the features would be extremely time consuming, and so we considered any further improvements to this system to be stretch goals for the project.
 
 
 #### FreshDirect Domain Blocking
 
 Once we got the web scraping implemented, we had the script automating the scraping of HTML search results off of the FreshDirect website.  As we were debugging, our computer's were constantly pinging the web server for these results.  Due to the frequency of search calls, FreshDirect seems to have temporarily blocked us from accessing their site.  If not on the FreshDirect block list, the user should have no issue using our scrape feature.  
-
-![Nested Call](./images/Nested_API.png)
 
 Due to having been blocked during the debugging portion of this module, we did not fully implement the layout and filtering required to perfect this feature.  If this had also had a back-end, we would have worked around this by storing the pinged data so as not to have to call out to FreshDirect so often.
 
