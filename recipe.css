@@ -7,6 +7,12 @@ header{
 #search-button{
     background-color: rgb(55, 172, 26);
 }
+
+button{
+    height: 4vh;
+    margin: auto;
+}
+
 h1{
     text-align: center;
     color: rgb(55, 172, 26);

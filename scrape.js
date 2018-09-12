@@ -82,7 +82,6 @@ function getSearchList(searchParameter, produceList){
             .fail(function(error){
             }) // End .fail
 
-        // return produceList;
 }
 
 // Takes an array and posts the price into return.html

@@ -16,10 +16,12 @@
       
         <nav>
             <h1>Foogle</h1>
+
             <div class="search-container">
               <form action="pagetwo.html">
                 <input type="text" id="searchField" placeholder="Find Your Next Recipe" name="search">
-                <button id="search-button" type="submit"><i class="fa fa-search"></i></button><img id="bookmarked" class="bookIcon" src="https://image.flaticon.com/icons/png/512/4/4259.png" alt="">
+                <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+                <img id="bookmarked" class="bookIcon" src="https://image.flaticon.com/icons/png/512/4/4259.png" alt="">
               </form>
             </div>
           </nav>
@@ -40,9 +42,10 @@
         <div>
         <h1 id="recipeTitle">Recipe Title and Recipe Save Section </h1>
         </div>
-        <div class="col-2 offset-4">
-          <button id="saveRecipe">Save Recipe</button>
-          <button id="directions">Directions!</button>
+        <br>
+        <div class="col-2 offset-2" style="margin: auto">
+          <button id="saveRecipe" type="button" class="btn btn-success">Save Recipe</button>
+          <button id="directions" type="button" class="btn btn-success" target="_blank">Instructions</button>
         </div>
 
       </div>
@@ -57,10 +60,10 @@
           <!-- Will append list items using Javascript -->
         </ul>
       <div id='buttonBox'>
-        <input id='textSearch' placeholder='add item'>
-        <button id='findButton'>Find</button>
-        <button id='addButton'>Add</button>
-        <button id='removeButton'>Remove</button>
+        <input id='textSearch' placeholder='add item' style="height: 4.5vh;">
+        <button id='findButton' type="button" class="btn btn-success" >Find</button>
+        <button id='addButton' type="button" class="btn btn-success" >Add</button>
+        <!-- <button id='removeButton' type="button" class="btn btn-success" >Remove</button> -->
       </div>
       </div>
       <div class="col-lg-4 col-sm-12">
